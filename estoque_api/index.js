@@ -1,18 +1,21 @@
-    const express = require('express');// IMPORTA O PACOTE EXPRESS
-    const db = require('./src/db');
-    const estoqueRouter = require('./src/routers/estoqueRouter');
+const express = require('express');
 
-    const app = express();
+const db = require('./src/db');
+const estoqueRouter = require('./src/routers/estoqueRouter');
 
+// cria uma aplicação a partir do construtor do express
+const app = express();
 
-    app.use ('/', estoqueRouter);
+app.use(express.urlencoded({extended: true}));
 
-    db.sync(()=> {  
-        console.log('DB conectado');
-    });
+app.use('/', estoqueRouter);
 
-    const PORT=8080;
+// sincronizando Banco de dados
+db.sync(()=>{
+    console.log('DB conectado.');
+});
 
-    app.listen(PORT, ()=> {
-        console.log('app rodando na porta ', PORT);
-    });
+const PORT = 8080;
+app.listen(PORT, ()=>{
+    console.log('app rodando na porta ' + PORT);
+});

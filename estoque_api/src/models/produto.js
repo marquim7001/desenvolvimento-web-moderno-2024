@@ -8,18 +8,14 @@ const Produto = db.define('produto', {
         allowNull: false,
         primaryKey: true
     },
-
     nome: {
         type: Sequelize.STRING,
         allowNull: false
-
     },
-     quantidade: {
+    quantidade:{
         type: Sequelize.INTEGER,
         allowNull: false
-
-     }
-
+    }
 });
 
-modeule.exports = Produto;
+module.exports = Produto;
